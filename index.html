@@ -4,116 +4,157 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SlimGuru - Fat to Fit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+    }
+    html {
       scroll-behavior: smooth;
     }
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: #333;
+      background: #fefefe;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
     header {
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      background: url('https://images.unsplash.com/photo-1588776814546-ec7cbf4aeca0?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      height: 100vh;
       color: white;
-      padding: 60px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 0 20px;
+      flex-direction: column;
     }
     header h1 {
-      margin: 0;
       font-size: 48px;
+      max-width: 800px;
     }
     header p {
       font-size: 20px;
       margin-top: 10px;
+      max-width: 600px;
     }
     nav {
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       display: flex;
       justify-content: center;
-      padding: 10px 0;
+      padding: 16px;
+      background-color: white;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     nav a {
-      margin: 0 20px;
-      text-decoration: none;
-      color: #0072ff;
+      margin: 0 15px;
       font-weight: bold;
+      color: #0072ff;
     }
     section {
       padding: 60px 20px;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
     }
     .section-title {
       font-size: 32px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       color: #0072ff;
+      text-align: center;
     }
-    .doctor-card {
+    .about p {
+      font-size: 18px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .doctor-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
-      margin-top: 30px;
+      justify-content: center;
     }
-    .card {
-      flex: 1 1 300px;
-      border: 1px solid #eee;
+    .doctor-card {
+      background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      background-color: #fff;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
     }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
+    .doctor-card img {
       width: 100%;
       height: 220px;
       object-fit: cover;
     }
-    .card-body {
-      padding: 20px;
+    .doctor-card h3 {
+      margin-top: 15px;
+      font-size: 22px;
+      color: #0072ff;
     }
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
-      text-align: center;
-    }
-    .stats div {
-      font-size: 24px;
-      font-weight: bold;
+    .doctor-card p {
+      font-size: 15px;
+      padding: 0 15px 20px;
+      line-height: 1.5;
     }
     .services ul {
-      list-style: square;
-      margin-left: 20px;
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .services li {
+      background: #f4f8ff;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 16px;
     }
     .cta {
       text-align: center;
       margin-top: 40px;
     }
     .cta button {
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
       background: #0072ff;
       color: white;
+      padding: 14px 30px;
+      font-size: 18px;
+      border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .cta button:hover {
+      background: #005dd0;
+    }
+    .contact p {
+      text-align: center;
+      font-size: 16px;
+      margin: 8px 0;
     }
     footer {
-      background: #f4f4f4;
+      background-color: #f0f0f0;
+      padding: 20px;
       text-align: center;
-      padding: 30px;
       font-size: 14px;
-      color: #666;
+      color: #777;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 32px;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+      nav a {
+        margin: 10px;
+      }
     }
   </style>
 </head>
@@ -121,7 +162,7 @@
 
 <header>
   <h1>Welcome to SlimGuru</h1>
-  <p>Your trusted partner in sustainable health transformation</p>
+  <p>Empowering Health, Reversing Disease – Your Journey From Fat to Fit Starts Here.</p>
 </header>
 
 <nav>
@@ -132,39 +173,30 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="about">
+<section id="about" class="about">
   <h2 class="section-title">About SlimGuru</h2>
   <p>
-    At SlimGuru, we believe that health is wealth. Our integrated team of medical and naturopathic experts helps patients transition from <strong>Fat to Fit</strong>, managing chronic illnesses and promoting long-term wellness through personalized care plans. Whether you're dealing with diabetes, obesity, or post-PTCA recovery — we are here to guide your transformation journey.
+    SlimGuru is your trusted medical consultancy, transforming lives with a holistic approach to health. Our team of experienced physicians and naturopathists work together to treat chronic conditions like diabetes, hypertension, obesity, and more — using modern science and natural wellness.
   </p>
 </section>
 
 <section id="experts">
-  <h2 class="section-title">Meet Our Experts</h2>
-  <div class="doctor-card">
-    <div class="card">
+  <h2 class="section-title">Our Experts</h2>
+  <div class="doctor-grid">
+    <div class="doctor-card">
       <img src="https://via.placeholder.com/400x220?text=Dr.+Bera" alt="Dr. Bera">
-      <div class="card-body">
-        <h3>Dr. Bera (General Physician)</h3>
-        <p>5+ years experience | 55K+ patients</p>
-        <p>Specialist in chronic and modern diseases: DM, HTN, CAD, PTCA, CVA, Obesity, OA/RA, DVT & more.</p>
-        <p><em>Author of the book: "Fat to Fit"</em></p>
-      </div>
+      <h3>Dr. Bera</h3>
+      <p>General Physician with 5+ years experience and 55K+ patients seen. Expert in managing chronic conditions like DM, HTN, CAD, obesity, and post-PTCA recovery. Author of "Fat to Fit".</p>
     </div>
-    <div class="card">
+    <div class="doctor-card">
       <img src="https://via.placeholder.com/400x220?text=Dr.+Nasir" alt="Dr. Nasir">
-      <div class="card-body">
-        <h3>Dr. MD. Nasir (MBBS)</h3>
-        <p>5+ years experience | 40K+ patients</p>
-        <p>Dedicated to patient-first care with a strong background in internal medicine and preventive health.</p>
-      </div>
+      <h3>Dr. MD. Nasir</h3>
+      <p>MBBS doctor with 5+ years of experience, having consulted over 40K patients. Known for personalized care and focus on preventive medicine.</p>
     </div>
-    <div class="card">
+    <div class="doctor-card">
       <img src="https://via.placeholder.com/400x220?text=K.+Firoda" alt="K. Firoda">
-      <div class="card-body">
-        <h3>Er. & Naturopathist K. Firoda</h3>
-        <p>Blending natural healing methods with scientific insights to enhance holistic well-being and lifestyle improvement.</p>
-      </div>
+      <h3>Er. & Naturopathist K. Firoda</h3>
+      <p>Combining engineering logic with nature-based healing techniques for holistic well-being, lifestyle coaching, and disease reversal.</p>
     </div>
   </div>
 </section>
@@ -174,12 +206,12 @@
   <div class="services">
     <ul>
       <li>Weight Management Programs</li>
-      <li>Chronic Disease Management (Diabetes, HTN, etc.)</li>
-      <li>Post-PTCA and Cardiac Rehab</li>
-      <li>Holistic Lifestyle Coaching</li>
-      <li>Joint & Mobility Support (Knee/OA/RA)</li>
-      <li>Nutrition Planning</li>
-      <li>Online & In-Person Consultations</li>
+      <li>Diabetes & Hypertension Control</li>
+      <li>Cardiac Recovery (Post-PTCA, CAD)</li>
+      <li>Joint & Mobility Support (OA, RA, DVT)</li>
+      <li>Nutritional Counseling</li>
+      <li>Online & Offline Consultations</li>
+      <li>Lifestyle & Wellness Coaching</li>
     </ul>
   </div>
 </section>
@@ -187,16 +219,15 @@
 <section id="book">
   <h2 class="section-title">Book an Appointment</h2>
   <div class="cta">
-    <p>Ready to start your transformation journey? Let's talk!</p>
-    <button onclick="window.alert('Booking functionality coming soon!')">Book Now</button>
+    <p>Ready to take your health to the next level? Let our experts guide you.</p>
+    <button onclick="alert('Booking system coming soon!')">Book Now</button>
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="contact">
   <h2 class="section-title">Contact Us</h2>
   <p>Email: contact@slimguru.in</p>
   <p>Phone: +91-9876543210</p>
-  <p>Address: SlimGuru Clinic, Wellness Street, YourCity, India</p>
 </section>
 
 <footer>
